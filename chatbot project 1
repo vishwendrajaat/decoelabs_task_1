@@ -1,0 +1,225 @@
+# ============================================================
+#              SMART RULE-BASED AI CHATBOT
+#                    DecodeLabs - Project 1
+# ============================================================
+
+from datetime import datetime
+responses = {
+
+    "hello": "Hello! How can I help you today?",
+
+    "hi": "Hi there! What can I do for you?",
+
+    "hey": "Hey! Nice to meet you.",
+
+    "how are you":
+        "I'm doing great! I'm a rule-based chatbot, so I'm always ready to help.",
+
+    "what is your name":
+        "My name is SmartBot. I am a rule-based AI chatbot created using Python.",
+
+    "who are you":
+        "I'm SmartBot. I respond to users using predefined rules.",
+
+    "what can you do":
+        "I can have a basic conversation, perform mathematical calculations, "
+        "and provide the current date and time.",
+
+    "help":
+        "You can try: hello, hi, how are you, what can you do, "
+        "date, time, add, subtract, multiply, divide, or bye.",
+
+    "thank you":
+        "You're welcome! I'm happy to help.",
+
+    "thanks":
+        "You're welcome!",
+
+    "good morning":
+        "Good morning! I hope you have a great day.",
+
+    "good afternoon":
+        "Good afternoon! How can I help you?",
+
+    "good evening":
+        "Good evening! What can I do for you?",
+
+    "what is ai":
+        "AI stands for Artificial Intelligence. It is a field of computer science "
+        "that focuses on creating systems that can perform tasks associated "
+        "with human intelligence.",
+
+    "what is python":
+        "Python is a high-level programming language known for its simple syntax "
+        "and wide range of applications.",
+
+    "what is a chatbot":
+        "A chatbot is a computer program designed to communicate with users "
+        "through conversation.",
+
+    "what is rule based ai":
+        "Rule-based AI uses predefined rules and conditions to determine "
+        "how a system should respond to specific inputs."
+}
+print("=" * 55)
+print("                 SMART BOT")
+print("          RULE-BASED AI CHATBOT")
+print("=" * 55)
+
+print("Hello! I'm SmartBot.")
+print("I can chat with you and perform basic calculations.")
+print("Type 'help' to see what I can do.")
+print("Type 'bye' to end the conversation.")
+
+print("-" * 55)
+while True:
+
+    # Take input from the user
+    user_input = input("You: ")
+
+    # Clean the input
+    user_input = user_input.lower().strip()
+    if not user_input:
+
+        print("Bot: Please type something.")
+        continue
+    if user_input in ["bye", "exit", "quit", "goodbye"]:
+
+        print("Bot: Goodbye! Have a great day!")
+        break
+    elif user_input in [
+        "date",
+        "today",
+        "what is the date"
+    ]:
+
+        current_date = datetime.now().strftime("%d-%m-%Y")
+
+        print("Bot: Today's date is", current_date)
+    elif user_input in [
+        "time",
+        "current time",
+        "what time is it"
+    ]:
+
+        current_time = datetime.now().strftime("%I:%M:%S %p")
+
+        print("Bot: The current time is", current_time)
+    elif user_input.startswith("add"):
+
+        try:
+
+            numbers = list(
+                map(float, user_input.split()[1:])
+            )
+
+            if len(numbers) < 2:
+
+                print("Bot: Please provide at least two numbers.")
+
+            else:
+
+                result = sum(numbers)
+
+                print("Bot: The result is", result)
+
+        except ValueError:
+
+            print("Bot: Please enter valid numbers.")
+    elif user_input.startswith("subtract"):
+
+        try:
+
+            numbers = list(
+                map(float, user_input.split()[1:])
+            )
+
+            if len(numbers) < 2:
+
+                print("Bot: Please provide at least two numbers.")
+
+            else:
+
+                result = numbers[0]
+
+                for number in numbers[1:]:
+
+                    result -= number
+
+                print("Bot: The result is", result)
+
+        except ValueError:
+
+            print("Bot: Please enter valid numbers.")
+    elif user_input.startswith("multiply"):
+
+        try:
+
+            numbers = list(
+                map(float, user_input.split()[1:])
+            )
+
+            if len(numbers) < 2:
+
+                print("Bot: Please provide at least two numbers.")
+
+            else:
+
+                result = 1
+
+                for number in numbers:
+
+                    result *= number
+
+                print("Bot: The result is", result)
+
+        except ValueError:
+
+            print("Bot: Please enter valid numbers.")
+    elif user_input.startswith("divide"):
+
+        try:
+
+            numbers = list(
+                map(float, user_input.split()[1:])
+            )
+
+            if len(numbers) < 2:
+
+                print("Bot: Please provide at least two numbers.")
+
+            else:
+
+                result = numbers[0]
+
+                for number in numbers[1:]:
+
+                    if number == 0:
+
+                        print("Bot: Division by zero is not allowed.")
+                        break
+
+                    result /= number
+
+                else:
+
+                    print("Bot: The result is", result)
+
+        except ValueError:
+
+            print("Bot: Please enter valid numbers.")
+    else:
+
+        response = responses.get(user_input)
+
+        if response:
+
+            print("Bot:", response)
+
+        else:
+
+            print("Bot: I'm sorry, I don't understand that.")
+            print("Bot: Type 'help' to see what I can do.")
+print("=" * 55)
+print("                 CHATBOT CLOSED")
+print("=" * 55)
